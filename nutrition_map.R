@@ -60,28 +60,28 @@ m <- leaflet() %>%
 m
 
 
-# There are two ways of doing this, once with building the plot and once without building the plot.
+# To find colour scale There are two ways of doing this, once with building the plot and once without building the plot.
 
 # If we build the plot;
 
-library(ggplot2)
+#library(ggplot2)
 
-df <- data.frame(x = 1:10, y = 1:10, col = 11:20)
+#df <- data.frame(x = 1:10, y = 1:10, col = 11:20)
 
-ggplot(df) +
-  geom_point(aes(x = x, y = y, colour = col))
+#ggplot(df) +
+  #geom_point(aes(x = x, y = y, colour = col))
 
 
 # We can extract the scale and use it to retrieve the relevant information.
 
 # Using build plot
-build <- ggplot_build(last_plot())
+#build <- ggplot_build(last_plot())
 
-scale <- build$plot$scales$get_scales("colour")
-breaks  <- scale$get_breaks()
-colours <- scale$map(breaks)
+#scale <- build$plot$scales$get_scales("colour")
+#breaks  <- scale$get_breaks()
+#colours <- scale$map(breaks)
 
-data.frame(breaks = breaks, colours = colours)
+#data.frame(breaks = breaks, colours = colours)
 #>   breaks colours
 #> 1     NA  grey50
 #> 2   12.5 #1D3F5E
@@ -90,9 +90,9 @@ data.frame(breaks = breaks, colours = colours)
 #> 5   20.0 #56B1F7
 # Alternatively, we can skip building the plot and use the scales themselves directly, provided we 'train' the scales by showing it the limits of the data.
 
-scale  <- scale_colour_continuous()
-scale$train(range(df$col))
-breaks  <- scale$get_breaks()
-colours <- scale$map(breaks)
+#scale  <- scale_colour_continuous()
+#scale$train(range(df$col))
+#breaks  <- scale$get_breaks()
+#colours <- scale$map(breaks)
 
-data.frame(breaks = breaks, colours = colours)
+#data.frame(breaks = breaks, colours = colours)
